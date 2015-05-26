@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.0'
 
 ### OpenShift Online changes:
 
 # Fix the conflict with the system 'rake':
-gem 'rake', '~> 0.9.6'
+# gem 'rake', '~> 0.9.6'
+gem 'rake', '~> 10.4.2'
 
 # Support for databases and environment.
 # Use 'sqlite3' for testing and development and mysql and postgresql
@@ -20,14 +21,13 @@ group :development, :test do
   gem 'sqlite3'
   gem 'minitest'
   gem 'thor'
+  gem 'byebug'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
 end
 
-# Add support for the MySQL
-group :production, :mysql do
-  gem 'mysql2'
-end
-
-group :production, :postgresql do
+group :production do
   gem 'pg'
 end
 
@@ -38,7 +38,7 @@ gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+# gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -66,3 +66,11 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'devise', '~> 3.4.1'
+gem 'bootstrap-sass', '~> 3.3.4.1'
+gem 'slim', '~> 3.0.3'
+gem 'simple_form', '~> 3.1.0'
+gem 'ckeditor', '~> 4.1.1'
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.2.0'
+gem 'kaminari', '~> 0.16.3'
