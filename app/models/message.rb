@@ -3,5 +3,5 @@ class Message < ActiveRecord::Base
 
   validates :msg, :nickname, presence: true
   enum level: [:admin, :top, :normal]
-  enum status: [:public, :private]
+  enum status: [:publish, :draft]
 end
