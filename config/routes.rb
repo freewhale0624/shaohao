@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+  resources :tags
+
+  devise_for :users
   root 'home#index'
+  resources :messages, only: [:index, :create]
+  resources :posts
+  mount Ckeditor::Engine => '/ckeditor'
+
+  get 'setInitTime' => 'setting#edit_init_time', as: :edit_init_time
+  post 'setInitTime' => 'setting#update_init_time', as: :update_init_time
+  get 'gfEasySolution' => 'home#gf_easy_solution', as: :gf_easy_solution
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

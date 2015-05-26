@@ -1,0 +1,26 @@
+div.form_resie.center-block
+  = render "layouts/post_header"
+
+  div.form_resie.center-block
+    - @posts.each do |post|
+      div.row.post-list
+        div.col-md-12
+          h1
+            = post.title
+          div.sub-title
+            - post.tags.each do |t|
+              a.btn.btn-xs.btn-info.margin-left-gap
+                = t.name
+                span.glyphicon.glyphicon-tags
+            p.small.pull-right
+              | #{post.updated_at.strftime("%F %T")} &nbsp; &nbsp; by 
+              a #{post.user.username}
+        br
+        div.col-md-12
+          - unless post.content.blank?
+            - if sanitize(post.content).length > 20
+              = truncate(sanitize(post.content), length: 30)
+              a.btn-default ...
+            - else
+              = truncate(sanitize(post.content), length: 30)
+      hr

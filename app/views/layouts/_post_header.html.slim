@@ -1,0 +1,25 @@
+ul.nav.nav-tabs.nav-padding-left
+  li role="presentation" class="#{params[:author].nil? ? 'active' : ''}"
+    = link_to " 全  部 ", root_path
+  li role="presentation"
+    = link_to " Ding.Kou 一言堂 ", root_path
+  li role="presentation"
+    = link_to " 黑君碎碎念 ", root_path
+  li.dropdown.pull-right role="presentation"
+    a.dropdown-toggle#tag-drop data-toggle="dropdown" aria-controls="tag-drop-contents" aria-expanded="false"
+      | 全  部
+      span.caret
+    ul.dropdown-menu#tag-drop-contents role="menu" aria-labelledby="tag-drop"
+      - Tag.all.each do |tag|
+        li
+          a= tag.name
+
+    / = form_tag root_path, class: 'form-inline', method: :get, role: 'search' do
+    /   = select("post", "person_id", Tag.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Person'}, {class: "form-control"})
+    /  select("type","type_id",["1", "2", "3"], {include_blank: 'None'})
+    / form.navbar-form.navbar-right role="search"
+    /   div.input-group
+    /     input.form-control type="text"
+    /     span.input-group-btn
+    /       button.btn.btn-primary
+    /         i.glyphicon.glyphicon-search

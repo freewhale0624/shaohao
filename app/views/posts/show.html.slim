@@ -1,0 +1,22 @@
+div.form_resie.center-block
+  = render "layouts/post_header"
+
+  div.form_resie.center-block
+    div.row
+      div.col-md-12
+        h1
+          = @post.title
+          = link_to "刪除", @post, method: :delete, data: { confirm: "are_you_sure_to_delete_it" }, class: "btn btn-danger btn-xs pull-right margin-left-gap"
+          = link_to "編輯", edit_post_path(@post), class: "btn btn-xs btn-success pull-right"
+        div.sub-title
+          - @post.tags.each do |t|
+            a.btn.btn-xs.btn-info.margin-left-gap
+              = t.name
+              span.glyphicon.glyphicon-tags
+          p.small.pull-right
+            | #{@post.updated_at.strftime("%F %T")} by
+            a #{@post.user.username}
+    br
+    div.row
+      div.col-md-12  
+        = sanitize(@post.content)

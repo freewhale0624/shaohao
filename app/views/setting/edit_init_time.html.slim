@@ -1,0 +1,22 @@
+= render 'layouts/wheel_slide'
+hr
+div.col-md-8.col-md-offset-2
+  = form_tag(update_init_time_path)
+    div.row.form-group
+      div.col-md-2
+        = select_tag :year, options_for_select(Time.now.year..Time.now.year+1), {:class => 'form-control'}
+      div.col-md-2
+        = select_tag :month, options_for_select(1..12, Time.now.month), class: "form-control"
+      div.col-md-2
+        = select_tag :date, options_for_select(1..31, Time.now.day), class: "form-control"
+      div.col-md-2
+        = select_tag :hour, options_for_select(0..23, Time.now.hour), class: "form-control"
+      div.col-md-2
+        = select_tag :min, options_for_select(0..59, Time.now.min), class: "form-control"
+      div.col-md-2
+        = select_tag :sec, options_for_select(0..59, Time.now.sec), class: "form-control"
+    div.row.form-group
+      div.col-md-8
+        = select_tag :place, options_from_collection_for_select(WHEELDATA, :first, :last), class: "form-control"
+      div.col-md-4
+        = submit_tag "確認", class: "btn btn-primary form-control"

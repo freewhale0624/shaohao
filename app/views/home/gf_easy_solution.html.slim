@@ -1,0 +1,100 @@
+div.row.custom.page-header
+  div.col-md-8.col-md-offset-2
+    h2
+      | GF 自動領獎
+      small href="#" style="font-size: 60%;"
+        | &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+        a href="#" 使用教學
+br
+div.row
+  div.col-md-8.col-md-offset-2
+    div.form_resie.center-block
+      div
+        div.form-group
+          = label_tag :game_id, "遊戲帳號"
+          = text_field_tag :game_id, nil, class: "form-control", require: true
+        div.form-group
+          = label_tag :game_server, "伺服器"
+          = select_tag :game_server, options_for_select([ "榮耀新生", "仙魔無界", "創世黑曜", "王朝崛起", "陵魚+天昊", "PVE美眉服", "朧族之謎" ]), class: "form-control", require: true
+        div.form-group
+          = label_tag :game_role, "遊戲角色"
+          = text_field_tag :game_role, nil, class: "form-control", require: true
+        div.form-group
+          = label_tag :game_award, "獎品序號"
+          = text_area_tag :game_award, nil, rows: 8, class: "form-control", require: true
+      div
+        div.form-group
+          a.btn.btn-primary.form-control.send 確認
+      div
+        textarea.form-control#result rows="8"
+
+javascript:
+  $(function () {
+    var sample = function(gameID, gameServer, gameRole, gameAwards) {
+      var result = 
+        "var gameID = \"" + gameID + "\";\n" +
+        "var gameServer = \"" + gameServer + "\";\n" +
+        "var gameRole = \"" + gameRole + "\";\n" +
+        "var cardInfo = " + gameAwards + ";\n" +
+        "var jq = document.createElement('script');\n" +
+        "jq.src = \"https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js\";\n" +
+        "document.getElementsByTagName('head')[0].appendChild(jq);\n" +
+        "var seq = 0;\n" + 
+        "var maxSeq = cardInfo.length;\n" + 
+        "var contents;\n" + 
+        "\n" + 
+        "function setRoleAndNo() {\n" + 
+        "\tcontents = $('iframe#main').contents();\n" + 
+        "\tvar framejQuery = $('iframe#main').get(0).contentWindow.$;\n" + 
+        "\tcontents.find('#Game_Role').children().each(function(){\n" + 
+        "\t\tif ($(this).text() == gameRole){\n" + 
+        "\t\t\t$(this).attr('selected', true);\n" + 
+        "\t\t}\n" + 
+        "\t});\n" + 
+        "\tcontents.find('#Card_ID').val(cardInfo[2*seq]);\n" + 
+        "\tcontents.find('#Card_PW').val(cardInfo[2*seq+1]);\n" + 
+        "}\n" + 
+        "\n" + 
+        "function setCard() {\n" + 
+        "\tif (seq < maxSeq/2) {\n" + 
+        "\t\tcontents = $('iframe#main').contents();\n" + 
+        "\t\tvar framejQuery = $('iframe#main').get(0).contentWindow.$;\n" + 
+        "\t\tcontents.find('#Game_ID option[value=' + gameID + ']').attr('selected', 'selected');\n" + 
+        "\t\tcontents.find('#Game_Svr').children().each(function(){\n" + 
+        "\t\t\tif ($(this).text() == gameServer){\n" + 
+        "\t\t\t\t$(this).attr('selected', true);\n" + 
+        "\t\t\t}\n" + 
+        "\t\t});\n" + 
+        "\t \n" + 
+        "\t\tframejQuery('#Game_ID').trigger('change');\n" + 
+        "\t\tsetTimeout(setRoleAndNo, 2000);\n" + 
+        "\t\tcontents.find('#Card_ID').val(cardInfo[2*seq]);\n" + 
+        "\t\tcontents.find('#Card_PW').val(cardInfo[2*seq+1]);\n" + 
+        "\t\tsetTimeout(function(){contents.find('#ButtonOK').click();}, 4000);\n" + 
+        "\t\tsetTimeout(function(){\n" + 
+        "\t\t\tdocument.getElementById(\"main\").src = \"SPECIAL_CARD/spcard01.aspx\";\n" + 
+        "\t\t\tseq++;\n" + 
+        "\t\t\tsetTimeout(setCard, 2000);\n" + 
+        "\t\t}, 6000)\n" + 
+        "\t}\n" + 
+        "}\n" + 
+        "\n" + 
+        "setTimeout(setCard, 2000);";
+      return result;
+    };
+    $(".btn.send").click(function() {
+      var gameID = $("#game_id").val();
+      var gameServer = $("#game_server").val();
+      var gameRole = $("#game_role").val();
+      var gameAwards = "[\n";
+      var awards = $("#game_award").val().split("\n");
+      for (var i=0; i<awards.length; i++) {
+        var award_element = awards[i].split("\t");
+        gameAwards = gameAwards + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n"
+      }
+      gameAwards += "]";
+      console.log(gameAwards);
+      $("#result").text(sample(gameID, gameServer, gameRole, gameAwards));
+    });
+
+  });
