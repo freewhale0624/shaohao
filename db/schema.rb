@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150521090756) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "messages", force: :cascade do |t|
     t.string   "nickname",               null: false
     t.string   "msg",                    null: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150521090756) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "posts_tags", force: :cascade do |t|
     t.integer "post_id"
@@ -63,16 +66,18 @@ ActiveRecord::Schema.define(version: 20150521090756) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "wheels", force: :cascade do |t|
-    t.integer  "update_by_id"
+    t.integer  "user_id"
     t.datetime "init_time"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "wheels", ["update_by_id"], name: "index_wheels_on_update_by_id"
+  add_index "wheels", ["user_id"], name: "index_wheels_on_user_id", using: :btree
 
+  add_foreign_key "posts", "users"
+  add_foreign_key "wheels", "users"
 end

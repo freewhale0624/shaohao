@@ -18,17 +18,12 @@ gem 'rake', '~> 10.4.2'
 # $ rhc env set BUNDLE_WITHOUT="development test postgresql"
 #
 group :development, :test do
-  gem 'sqlite3'
   gem 'minitest'
   gem 'thor'
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
-end
-
-group :production do
-  gem 'pg'
 end
 
 ### / OpenShift changes
@@ -74,3 +69,5 @@ gem 'ckeditor', '~> 4.1.1'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.2.0'
 gem 'kaminari', '~> 0.16.3'
+gem 'pg', '~> 0.18.2'
+

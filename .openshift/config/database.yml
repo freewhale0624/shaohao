@@ -27,10 +27,26 @@ defaults: &defaults
   <<: *<%= ENV['RAILS_DB'] || "sqlite" %>
 
 development:
-  <<: *defaults
+  adapter: postgresql
+  encoding: unicode
+  username: test
+  password: p@ssw0rd
+  host: localhost
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  database: shaohao_development
 
 test: &test
-  <<: *defaults
+  adapter: postgresql
+  encoding: unicode
+  username: test
+  password: p@ssw0rd
+  host: localhost
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  database: shaohao_test
 
 production:
   <<: *defaults
