@@ -4,7 +4,7 @@ div.row
       = f.error_notification
       div.form-inputs
         = f.input :title, label: "標題", required: true, autofocus: true
-        = f.association :tags, label: false, prompt: "Choose a Company", as: :check_boxes, item_wrapper_class: "checkbox-inline association"
+        = f.input :tag_list, label: "標籤"
         = f.cktext_area :content, label: "內文"
       br
       div.form-actions

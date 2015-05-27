@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    default_time = Wheel.first.init_time || Time.now 
-    @start_time = Time.now - (Time.now - default_time).to_i % ONEROUNDTIME
+    @start_time = Wheel.first.blank? ? nil : Time.now - (Time.now - Wheel.first.init_time ).to_i % ONEROUNDTIME
+    @wheel = Wheel.first
   end
 
   def gf_easy_solution

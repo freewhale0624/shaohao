@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :tags
-
   devise_for :users
   root 'home#index'
   resources :messages, only: [:index, :create]

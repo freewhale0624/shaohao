@@ -12,15 +12,19 @@ div.row
         a href="http://forum.gamer.com.tw/C.php?bsn=10028&snA=86328&tnum=3" lyrayan(敖欣靈) &nbsp;&nbsp;&nbsp;
 div.row
   div.row.col-md-8.col-md-offset-2
-    table.table.table-bordered
-      thread
-      tr
-        th(colspan="2") 去程
-        th(colspan="2") 返程
-      tbody
-        - (0...WHEELDATA.length/2).each do |index|
-          tr
-            td.col-md-3= WHEELDATA[index][1]
-            td.col-md-3= (@start_time + WHEELDATA[index][0]).strftime("%H:%M:%S")
-            td.col-md-3= WHEELDATA[index + WHEELDATA.length/2][1]
-            td.col-md-3= (@start_time + WHEELDATA[index + WHEELDATA.length/2][0]).strftime("%H:%M:%S")
+    - unless @start_time.blank?
+      table.table.table-bordered
+        thread
+        tr
+          th(colspan="2") 去程
+          th(colspan="2") 返程
+        tbody
+          - (0...WHEELDATA.length/2).each do |index|
+            tr
+              td.col-md-3= WHEELDATA[index][1]
+              td.col-md-3= (@start_time + WHEELDATA[index][0]).strftime("%H:%M:%S")
+              td.col-md-3= WHEELDATA[index + WHEELDATA.length/2][1]
+              td.col-md-3= (@start_time + WHEELDATA[index + WHEELDATA.length/2][0]).strftime("%H:%M:%S")
+      p.small.pull-right 感謝 #{@wheel.user.username} 由 #{@wheel.updated_at.strftime("%Y/%m/%d %H:%M:%S")} 更新資料
+    - else
+      h4 無初始資料，請等待管理員更新

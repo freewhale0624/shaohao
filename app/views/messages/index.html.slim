@@ -21,9 +21,10 @@ div.row
           p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
       - else
         .bs-callout.bs-callout-common
-          h4= msg.nickname
+          h4
+            = msg.nickname
+            p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
           p= msg.msg
-          p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
 
 div.modal.fade#messageModal
   div.modal-dialog

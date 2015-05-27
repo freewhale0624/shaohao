@@ -21,8 +21,10 @@ nav.navbar.navbar-default
             | 分享完美
             span.caret
           ul.dropdown-menu role="menu"
-            li: a[href="#"] Ding.Kou 一言堂
-            li: a[href="#"] 黑君的碎碎念
+            li
+              = link_to "Ding.Kou 一言堂", posts_path(user: 1)
+            li
+              = link_to "黑君的碎碎念", posts_path(user: 2)
         li
           = link_to "留言板", messages_path
 
