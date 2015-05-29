@@ -5,7 +5,7 @@ class SettingController < ApplicationController
   end
 
   def update_init_time
-    init_time = Time.new(params[:year], params[:month], params[:date], params[:hour], params[:min], params[:sec]) - params[:place].to_i
+    init_time = Time.zone.new(params[:year], params[:month], params[:date], params[:hour], params[:min], params[:sec]) - params[:place].to_i
     @wheel = Wheel.first || Wheel.new
     @wheel.init_time = init_time
     @wheel.user_id = current_user.id
