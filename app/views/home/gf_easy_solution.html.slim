@@ -68,8 +68,6 @@ javascript:
         "\t \n" + 
         "\t\tframejQuery('#Game_ID').trigger('change');\n" + 
         "\t\tsetTimeout(setRoleAndNo, 2000);\n" + 
-        "\t\tcontents.find('#Card_ID').val(cardInfo[2*seq]);\n" + 
-        "\t\tcontents.find('#Card_PW').val(cardInfo[2*seq+1]);\n" + 
         "\t\tsetTimeout(function(){contents.find('#ButtonOK').click();}, 4000);\n" + 
         "\t\tsetTimeout(function(){\n" + 
         "\t\t\tdocument.getElementById(\"main\").src = \"SPECIAL_CARD/spcard01.aspx\";\n" + 
@@ -88,11 +86,25 @@ javascript:
       var gameRole = $("#game_role").val();
       var gameAwards = "[\n";
       var awards = $("#game_award").val().split("\n");
+      var awardsParse = "";
+      var pattern = /^\w{16}$/;
       for (var i=0; i<awards.length; i++) {
         var award_element = awards[i].split("\t");
-        gameAwards = gameAwards + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n"
+        if (pattern.test(award_element[2]) && pattern.test(award_element[3])) {
+          awardsParse = awardsParse + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n";
+        } else {
+          var awardsParseElement = "";
+          for (var j=0; j<award_element.length; j++) {
+            if (pattern.test(award_element[j])) {
+              awardsParseElement = awardsParseElement + "\t\"" + award_element[2] + "\", "; 
+            }
+          }
+          if (awardsParseElement != "") {
+            awardsParse = awardsParseElement + "\n";
+          }
+        }
       }
-      gameAwards += "]";
+      awardsParse == "" ? gameAwards = "獎品序號解析異常，請重新複製獎品序號貼上，若仍無法正常使用，請至留言板留言．" : gameAwards = gameAwards + awardsParse + "]";
       console.log(gameAwards);
       $("#result").text(sample(gameID, gameServer, gameRole, gameAwards));
     });
