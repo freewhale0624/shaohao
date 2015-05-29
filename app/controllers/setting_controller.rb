@@ -1,4 +1,5 @@
 class SettingController < ApplicationController
+  before_action :authenticate_author!
 
   def edit_init_time
   end

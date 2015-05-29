@@ -1,7 +1,7 @@
 .margin-left-gap {
   margin-left: 10px;
   span {
-    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 
@@ -9,12 +9,48 @@
   padding-left: 30px;
 }
 
-.post-list {
-  background-color: #F5F5F5;
-  padding: 10px 20px 20px 20px;
-  margin: 20px;
+.row.post-list {
+  padding-top: 4%;
+
+  .popover {
+    display: block;
+    max-width: 100%;
+    position: static;
+
+    .popover-title {
+      padding: 2% 3%;
+
+      h2 {
+        margin-top: 5px;
+        margin-bottom: 25px;
+
+        a {
+          color: black;
+        }
+      }
+    }
+
+    .popover-content {
+      padding: 2% 3%;
+
+      a {
+        color: black;
+      }
+    }
+  }
 }
 
-.association.checkbox-inline {
-  vertical-align: baseline;
+.post-show {
+  .post-title {
+    padding: 2% 3%;
+
+    h2 {
+      margin-top: 5px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .post-content {
+    padding: 2% 3%;
+  }
 }

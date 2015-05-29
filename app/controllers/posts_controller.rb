@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :authenticate_author!, only: [:new, :create, :edit, :my, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = params[:tag].blank? ? Post.all : Post.tagged_with(params[:tag])
+    @posts = @posts.publish
+    @posts = @posts.where(user: params[:user].to_i) unless params[:user].blank?
   end
 
   def new
@@ -20,9 +23,14 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
+  end
+
+  def my
+    @posts = Post.where(user: current_user.id)
   end
 
   def update
@@ -35,10 +43,10 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :tag_list)
+    params.require(:post).permit(:title, :content, :tag_list, :status)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 end

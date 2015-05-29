@@ -4,11 +4,12 @@ div.row
       = f.error_notification
       div.form-inputs
         = f.input :title, label: "標題", required: true, autofocus: true
-        = f.input :tag_list, label: "標籤"
+        = f.input :status, label: "是否發佈", collection: Post.statuses.map {|k, v| [I18n.t(k.to_s), k]}, as: :select, prompt: "choose", class: 'form-control'
+        = f.input :tag_list, input_html: {value: @post.tag_list.to_s}, label: "標籤(用\",\"隔開)"
         = f.cktext_area :content, label: "內文"
       br
       div.form-actions
         div.col-md-6
-          = link_to "返回", request.referer, class: "btn btn-success form-control"
+          = link_to "返回", posts_path, class: "btn btn-success form-control"
         div.col-md-6
           = f.button :submit, "確認", class: "btn btn-primary form-control"

@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   resources :messages, only: [:index, :create]
-  resources :posts
+  resources :posts do
+    collection do
+      get 'my'
+    end
+  end
   mount Ckeditor::Engine => '/ckeditor'
 
   get 'setInitTime' => 'setting#edit_init_time', as: :edit_init_time

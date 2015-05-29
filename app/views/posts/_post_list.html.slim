@@ -1,0 +1,24 @@
+div.form_resie.center-block
+  - @posts = [@posts] if @posts != nil && !@posts.respond_to?('each') 
+  - @posts.each do |post|
+    div.row.post-list
+      div.popover
+        div.popover-title
+          h2
+            = link_to post.title, post
+            = " - 草稿" if post.status == "draft" 
+          div.sub-title
+            - post.tags.each do |t|
+              = link_to posts_path(tag: t.name), html_options = {class: "btn btn-primary btn-xs margin-left-gap"}
+                span.glyphicon.glyphicon-tags
+                = t.name
+            p.small.pull-right
+              | #{post.updated_at.strftime("%F %T")} &nbsp; &nbsp; by 
+              a #{post.user.username}
+        div.popover-content
+          - unless post.content.blank?
+            - if sanitize(post.content).length > 300
+              = link_to sanitize(post.content, :tags=>[]).truncate(300).html_safe, post
+            - else
+              = sanitize(post.content)
+    hr

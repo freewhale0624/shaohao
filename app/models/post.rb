@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
   acts_as_taggable
 
   validates :user, :title, presence: true
+  enum status: [:publish, :draft]
 end
