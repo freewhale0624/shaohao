@@ -11,7 +11,7 @@ class SettingController < ApplicationController
     @wheel.user_id = current_user.id
     
     if @wheel.save
-      redirect_to request.referer, notice: "時間已更新"
+      redirect_to root_path, notice: "時間已更新"
     else
       redirect_to request.referer, notice: "更新失敗,請稍後再試"
     end
