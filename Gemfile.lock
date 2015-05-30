@@ -82,6 +82,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.5.2)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -204,6 +206,7 @@ DEPENDENCIES
   carrierwave (~> 0.10.0)
   ckeditor (~> 4.1.1)
   devise (~> 3.4.1)
+  font-awesome-rails (~> 4.3.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.3)

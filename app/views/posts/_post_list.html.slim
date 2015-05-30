@@ -9,9 +9,9 @@ div.form_resie.center-block
             = " - 草稿" if post.status == "draft" 
           div.sub-title
             - post.tags.each do |t|
-              = link_to posts_path(tag: t.name), html_options = {class: "btn btn-primary btn-xs margin-left-gap"}
-                span.glyphicon.glyphicon-tags
-                = t.name
+              = link_to posts_path(tag: t.name), html_options = {class: "btn btn-primary btn-xs btn-tag margin-left-gap"}
+                = fa_icon "tag"
+                = " " + t.name
             p.small.pull-right
               | #{post.updated_at.strftime("%F %T")} &nbsp; &nbsp; by 
               a #{post.user.username}
