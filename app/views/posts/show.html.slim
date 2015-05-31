@@ -6,8 +6,9 @@ div.form_resie.center-block
       div.post-title
         h2
           = @post.title
-          = link_to "刪除", @post, method: :delete, data: { confirm: "are_you_sure_to_delete_it" }, class: "btn btn-danger btn-xs pull-right margin-left-gap"
-          = link_to "編輯", edit_post_path(@post), class: "btn btn-xs btn-success pull-right"
+          - if current_user.try(:author?)
+            = link_to "刪除", @post, method: :delete, data: { confirm: "are_you_sure_to_delete_it" }, class: "btn btn-danger btn-xs pull-right margin-left-gap"
+            = link_to "編輯", edit_post_path(@post), class: "btn btn-xs btn-success pull-right"
         div.sub-title
           - @post.tags.each do |t|
             = link_to posts_path(tag: t.name), html_options = {class: "btn btn-primary btn-xs margin-left-gap"}
