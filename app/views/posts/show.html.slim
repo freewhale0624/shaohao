@@ -6,7 +6,7 @@ div.form_resie.center-block
       div.post-title
         h2
           = @post.title
-          - if current_user.try(:author?)
+          - if !current_user.blank? && current_user.id == @post.user_id
             = link_to "刪除", @post, method: :delete, data: { confirm: "are_you_sure_to_delete_it" }, class: "btn btn-danger btn-xs pull-right margin-left-gap"
             = link_to "編輯", edit_post_path(@post), class: "btn btn-xs btn-success pull-right"
         div.sub-title
