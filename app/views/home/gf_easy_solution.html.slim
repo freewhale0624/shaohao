@@ -31,6 +31,8 @@ div.row
 javascript:
   $(function () {
     var sample = function(gameID, gameServer, gameRole, gameAwards) {
+      if (!gameAwards)
+        return "獎品序號解析異常，請重新複製獎品序號貼上，若仍無法正常使用，請至留言板留言．"
       var result = 
         "var gameID = \"" + gameID + "\";\n" +
         "var gameServer = \"" + gameServer + "\";\n" +
@@ -72,8 +74,8 @@ javascript:
         "\t\tsetTimeout(function(){\n" + 
         "\t\t\tdocument.getElementById(\"main\").src = \"SPECIAL_CARD/spcard01.aspx\";\n" + 
         "\t\t\tseq++;\n" + 
-        "\t\t\tsetTimeout(setCard, 8000);\n" + 
-        "\t\t}, 6000)\n" + 
+        "\t\t\tsetTimeout(setCard, 10000);\n" + 
+        "\t\t}, 9000)\n" + 
         "\t}\n" + 
         "}\n" + 
         "\n" + 
@@ -96,16 +98,33 @@ javascript:
           var awardsParseElement = "";
           for (var j=0; j<award_element.length; j++) {
             if (pattern.test(award_element[j])) {
-              awardsParseElement = awardsParseElement + "\t\"" + award_element[2] + "\", "; 
+              awardsParseElement = awardsParseElement + "\t\"" + award_element[j] + "\", "; 
             }
           }
           if (awardsParseElement != "") {
-            awardsParse = awardsParseElement + "\n";
+            awardsParse = awardsParse + awardsParseElement + "\n";
           }
         }
       }
-      awardsParse == "" ? gameAwards = "獎品序號解析異常，請重新複製獎品序號貼上，若仍無法正常使用，請至留言板留言．" : gameAwards = gameAwards + awardsParse + "]";
-      console.log(gameAwards);
+      if (!awardsParse) {
+        for (var i=0; i<awards.length; i++) {
+          var award_element = awards[i].split(" ");
+          if (pattern.test(award_element[2]) && pattern.test(award_element[3])) {
+            awardsParse = awardsParse + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n";
+          } else {
+            var awardsParseElement = "";
+            for (var j=0; j<award_element.length; j++) {
+              if (pattern.test(award_element[j])) {
+                awardsParseElement = awardsParseElement + "\t\"" + award_element[j] + "\", "; 
+              }
+            }
+            if (awardsParseElement != "") {
+              awardsParse = awardsParse + awardsParseElement + "\n";
+            }
+          }
+        }
+      }
+      awardsParse == "" ? gameAwards = null : gameAwards = gameAwards + awardsParse + "]";
       $("#result").text(sample(gameID, gameServer, gameRole, gameAwards));
     });
 
