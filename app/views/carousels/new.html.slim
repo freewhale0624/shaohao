@@ -1,0 +1,18 @@
+div.form_resie.center-block
+  div.row.custom.page-header
+    h2
+      | 建立首頁圖片輪播
+  br
+  = simple_form_for(@carousel) do |f|
+    = f.error_notification
+    div.form-inputs
+      = f.input :image, label: "圖片", input_html: {class: "file-uploader", required: true}
+      = f.input :url, label: "網址", class: "form-control"
+      = f.input :video, label: "影片", class: "form-control"
+      = f.input :priority, label: "順序", class: "form-control"
+    br
+    div.form-actions
+      div.col-md-6
+        = link_to "返回", carousels_path, class: "btn btn-success form-control"
+      div.col-md-6
+        = f.button :submit, "確認", class: "btn btn-primary form-control"

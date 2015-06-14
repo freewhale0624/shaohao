@@ -1,12 +1,65 @@
 // Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .bs-callout {
-  H4 {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+
+  h4 {
+    margin-top: 0;
     margin-bottom: 20px;
+    font-size: 22px;
 
     p.pull-right.small {
-      font-size: 40%;
+      font-size: 70%;
     }
   }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.bs-callout p:last-child {
+margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+background-color: #fff;
+}
+
+.bs-callout-common {
+  border-left-color: #f0ad4e;
+}
+
+.bs-callout-common h4,
+.bs-callout-common a.alert-link {
+  color: #400000;
+}
+
+.bs-callout-admin {
+  border-left-color: #1919FF;
+}
+
+.bs-callout-admin h4,
+.bs-callout-admin a.alert-link {
+  color: #0000A3;
+}
+
+.bs-callout-top {
+  border-left-color: #00FF00;
+}
+
+.bs-callout-top h4,
+.bs-callout-top a.alert-link {
+  color: #008000;
+}
+
+.bs-callout a.alert-link {
+  font-weight: bold;
 }

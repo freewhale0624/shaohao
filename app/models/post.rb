@@ -4,4 +4,6 @@ class Post < ActiveRecord::Base
 
   validates :user, :title, presence: true
   enum status: [:publish, :draft]
+
+  default_scope { order('created_at DESC') }
 end

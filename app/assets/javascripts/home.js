@@ -9,7 +9,6 @@ $(function () {
   });
 });
 
-
 var getCookie = function (key) {
   if ( document.cookie.length === 0 )   return false;
   var i = document.cookie.search(key + '=');

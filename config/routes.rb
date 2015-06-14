@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :carousels, except: [:show]
+
   devise_for :users
   root 'home#index'
   resources :messages, only: [:index, :create]

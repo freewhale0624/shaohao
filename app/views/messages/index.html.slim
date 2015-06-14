@@ -11,19 +11,21 @@ div.row
       - case msg.level
       - when "admin" 
         div.bs-callout.bs-callout-admin
-          h4= msg.nickname + ' [系統公告]'
+          h4
+            = msg.nickname + ' [系統公告]'
+            p.pull-right= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
           p= msg.msg
-          p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
       - when "top" 
         .bs-callout.bs-callout-top
-          h4= msg.nickname + ' [置頂訊息]'
+          h4
+            = msg.nickname + ' [置頂訊息]'
+            p.pull-right= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
           p= msg.msg
-          p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
       - else
         .bs-callout.bs-callout-common
           h4
             = msg.nickname
-            p.pull-right.small= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
+            p.small.pull-right= msg.created_at.in_time_zone("Taipei").strftime("%Y/%m/%d %H:%M:%S")
           p= msg.msg
 
 div.modal.fade#messageModal

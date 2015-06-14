@@ -1,0 +1,24 @@
+div.form_resie.center-block
+  div.row.custom.page-header
+    h2
+      | 編輯首頁圖片輪播
+  br
+  div.row
+    div.table-responsive
+      table.table.table-striped
+        tr
+          th 圖片
+          th 網址
+          th 影片
+          th 順序
+          th.col-md-2
+            = link_to "新增", new_carousel_path, class: "btn btn-sm btn-primary"
+        - @carousels.each do |carousel|
+          tr
+            td= image_tag(carousel.image.url(:small_thumb))
+            td= carousel.url
+            td= carousel.video
+            td= carousel.priority
+            td
+              = link_to "編輯", edit_carousel_path(carousel), class: "btn btn-sm btn-success"
+              = link_to "刪除", carousel, method: :delete, data: { confirm: "是否確定刪除此筆資料" }, class: "btn btn-sm btn-danger margin-left-gap"
