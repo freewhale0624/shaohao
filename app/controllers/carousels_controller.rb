@@ -1,5 +1,6 @@
 class CarouselsController < ApplicationController
   before_action :set_carousel, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_author!
 
   # GET /carousels
   # GET /carousels.json

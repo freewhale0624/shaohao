@@ -5,20 +5,35 @@ div.row
     /   / if bannerLeft.hasModal
     /   /   a(href='javascript:;', data-toggle='modal', data-target='#leftModal')
     /   .popover-content 如果喜歡這個網站 請贊助幻仙給作者鼓勵 請寄至創世黑曜「DingKou」如果喜歡這個網站 請贊助幻仙給作者鼓勵 請寄至創世黑曜「DingKou」如果喜歡這個網站 請贊助幻仙給作者鼓勵 請寄至創世黑曜「DingKou」如果喜歡這個網站
+    script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    /! DingKou
+    ins.adsbygoogle data-ad-client="ca-pub-6956324465306185" data-ad-format="auto" data-ad-slot="2435374551" style="display:block"
+    javascript:
+      | (adsbygoogle = window.adsbygoogle || []).push({});
+
   div.col-md-8.col-xs-12
-    div.carousel.slide#bannerCarousel data-ride='carousel'
+    div.carousel.slide#bannerCarousel data-ride='carousel' data-interval="false"
       div.carousel-inner
         div.item.active
           img src='https://www.filepicker.io/api/file/lB5Q2MsuREGoJcN6NsAj' style='max-width: 100%;'
         - @carousels.each do |carousel|
           div.item
+            / - if carousel.video.blank?
             - unless carousel.url.blank?
-              =link_to "#{carousel.url}"
+              = link_to "#{carousel.url}"
                 = image_tag(carousel.image.url(:carousel))
             - else
               = image_tag(carousel.image.url(:carousel))
+            / - else
+            /   div.video style="text-align: center;"
+            /     = sanitize(carousel.video, tags: %w(iframe p br))
       a.left.carousel-control href='#bannerCarousel' role='button' data-slide='prev'
         span.glyphicon.glyphicon-chevron-left
       a.right.carousel-control href='#bannerCarousel' role='button' data-slide='next'
         span.glyphicon.glyphicon-chevron-right
   div.col-md-2.hidden-xs
+    script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    /! DingKou
+    ins.adsbygoogle data-ad-client="ca-pub-6956324465306185" data-ad-format="auto" data-ad-slot="2435374551" style="display:block"
+    javascript:
+      | (adsbygoogle = window.adsbygoogle || []).push({});

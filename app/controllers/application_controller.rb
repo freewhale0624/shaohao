@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def authenticate_shaohao!
+    if not current_user.try(:admin?) and not current_user.try(:author?) and not current_user.try(:shaohao?)
+      redirect_to root_path, notice: "請先登入管理者帳號"
+    end
+  end
+
   def authenticate_author!
     if not current_user.try(:admin?) and not current_user.try(:author?)
       redirect_to root_path, notice: "請先登入管理者帳號"

@@ -41,6 +41,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+    redirect_to posts_url, notice: "刪除成功"
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :content, :tag_list, :status)
