@@ -1,7 +1,7 @@
 = render "layouts/wheel_slide"
-div.row
-  div.row.col-md-12.page-header  style="margin-top: 5px;"
-    div.row.col-md-8.col-md-offset-2
+div.row style="padding: 0 50px 0 50px;"
+  div.row.col-md-12.page-header style="margin-top: 5px;"
+    div.row.col-md-10.col-md-offset-1
       div.small.pull-left
         / a.tutorial(href="javascript: void(0)",data-toggle="modal",data-target="#tutorialModal") 看不懂的，點我點我
       div.small.pull-right
@@ -11,7 +11,7 @@ div.row
         | 資料來源:
         a href="http://forum.gamer.com.tw/C.php?bsn=10028&snA=86328&tnum=3" lyrayan(敖欣靈) &nbsp;&nbsp;&nbsp;
 div.row
-  div.row.col-md-8.col-md-offset-2
+  div.row.col-md-10.col-md-offset-1
     - unless @start_time.blank?
       table.table.table-bordered
         thread

@@ -13,14 +13,26 @@ html
   body
     = render 'layouts/header'
 
-    div.container
-      - if notice
-        javascript:
-          toastr.info("#{notice}")
-      - if alert
-        javascript:
-          toastr.error("#{notice}")
-      = yield
+    div
+      div.col-md-2.hidden-xs
+        div style="padding: 100px 0 50px 0;"
+          script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          ins.adsbygoogle data-ad-client="ca-pub-6956324465306185" data-ad-format="auto" data-ad-slot="2435374551" style="display:block"
+          javascript:
+            (adsbygoogle = window.adsbygoogle || []).push({});
+      div.col-md-8.col-xs-12
+        - if notice
+          javascript:
+            toastr.info("#{notice}")
+        - if alert
+          javascript:
+            toastr.error("#{notice}")
+        = yield
+      div.col-md-2.hidden-xs
+        div style="padding: 100px 0 50px 0;"
+          ins.adsbygoogle data-ad-client="ca-pub-6956324465306185" data-ad-format="auto" data-ad-slot="3503307357" style="display:block"
+          javascript:
+            (adsbygoogle = window.adsbygoogle || []).push({});
   javascript:
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
