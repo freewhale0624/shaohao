@@ -11,10 +11,37 @@ div.row.custom.page-header {
   }
 }
 
-p {
+body {
   font-size: 16px;
+}
+
+.btn {
+  font-size: 16px;
+}
+
+.navbar-brand {
+  a {
+    font-size: 20px;
+  }
 }
 
 .cke_editable p {
   font-size: 26px;
+}
+
+.form_resie {
+  width: 90%;
+
+
+  .form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+div.small {
+  font-size: 12px;
+  a {
+    font-size: 12px;
+  }
 }
