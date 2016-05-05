@@ -91,7 +91,9 @@ javascript:
       var awardsParse = "";
       var pattern = /^\w{16}$/;
       for (var i=0; i<awards.length; i++) {
-        var award_element = awards[i].split("\t");
+        awards[i] = awards[i].replace(/\t/g, " ");
+        awards[i] = awards[i].replace(/,/g, " ");
+        var award_element = awards[i].split(" ");
         if (pattern.test(award_element[2]) && pattern.test(award_element[3])) {
           awardsParse = awardsParse + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n";
         } else {
@@ -103,24 +105,6 @@ javascript:
           }
           if (awardsParseElement != "") {
             awardsParse = awardsParse + awardsParseElement + "\n";
-          }
-        }
-      }
-      if (!awardsParse) {
-        for (var i=0; i<awards.length; i++) {
-          var award_element = awards[i].split(" ");
-          if (pattern.test(award_element[2]) && pattern.test(award_element[3])) {
-            awardsParse = awardsParse + "\t\"" + award_element[2] + "\", " + "\"" + award_element[3] + "\", \n";
-          } else {
-            var awardsParseElement = "";
-            for (var j=0; j<award_element.length; j++) {
-              if (pattern.test(award_element[j])) {
-                awardsParseElement = awardsParseElement + "\t\"" + award_element[j] + "\", "; 
-              }
-            }
-            if (awardsParseElement != "") {
-              awardsParse = awardsParse + awardsParseElement + "\n";
-            }
           }
         }
       }
