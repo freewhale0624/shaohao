@@ -10,6 +10,10 @@ div.row
   div.col-md-10.col-md-offset-1
     div.form_resie.center-block
       div
+        div.container
+          | 如果執行失敗, 出現紅字, 就在貼上執行一次. 如果還是失敗, 就...手動吧?
+        div
+          p= ""
         div.form-group
           = label_tag :game_id, "遊戲帳號"
           = text_field_tag :game_id, nil, class: "form-control", require: true
@@ -43,26 +47,26 @@ javascript:
         "document.getElementsByTagName('head')[0].appendChild(jq);\n" +
         "var seq = 0;\n" + 
         "var maxSeq = cardInfo.length;\n" + 
-        "var contents;\n" + 
+        "var content;\n" + 
         "\n" + 
         "function setRoleAndNo() {\n" + 
-        "\tcontents = $('iframe#main').contents();\n" + 
+        "\tcontent = $('iframe#main').contents();\n" + 
         "\tvar framejQuery = $('iframe#main').get(0).contentWindow.$;\n" + 
-        "\tcontents.find('#Game_Role').children().each(function(){\n" + 
+        "\tcontent.find('#Game_Role').children().each(function(){\n" + 
         "\t\tif ($(this).text() == gameRole){\n" + 
         "\t\t\t$(this).attr('selected', true);\n" + 
         "\t\t}\n" + 
         "\t});\n" + 
-        "\tcontents.find('#Card_ID').val(cardInfo[2*seq]);\n" + 
-        "\tcontents.find('#Card_PW').val(cardInfo[2*seq+1]);\n" + 
+        "\tcontent.find('#Card_ID').val(cardInfo[2*seq]);\n" + 
+        "\tcontent.find('#Card_PW').val(cardInfo[2*seq+1]);\n" + 
         "}\n" + 
         "\n" + 
         "function setCard() {\n" + 
         "\tif (seq < maxSeq/2) {\n" + 
-        "\t\tcontents = $('iframe#main').contents();\n" + 
+        "\t\tcontent = $('iframe#main').contents();\n" + 
         "\t\tvar framejQuery = $('iframe#main').get(0).contentWindow.$;\n" + 
-        "\t\tcontents.find('#Game_ID option[value=' + gameID + ']').attr('selected', 'selected');\n" + 
-        "\t\tcontents.find('#Game_Svr').children().each(function(){\n" + 
+        "\t\tcontent.find('#Game_ID option[value=' + gameID + ']').attr('selected', 'selected');\n" + 
+        "\t\tcontent.find('#Game_Svr').children().each(function(){\n" + 
         "\t\t\tif ($(this).text() == gameServer){\n" + 
         "\t\t\t\t$(this).attr('selected', true);\n" + 
         "\t\t\t}\n" + 
@@ -70,7 +74,7 @@ javascript:
         "\t \n" + 
         "\t\tframejQuery('#Game_ID').trigger('change');\n" + 
         "\t\tsetTimeout(setRoleAndNo, 5000);\n" + 
-        "\t\tsetTimeout(function(){contents.find('#ButtonOK').click();}, 6000);\n" + 
+        "\t\tsetTimeout(function(){content.find('#ButtonOK').click();}, 6000);\n" + 
         "\t\tsetTimeout(function(){\n" + 
         "\t\t\tdocument.getElementById(\"main\").src = \"SPECIAL_CARD/spcard01.aspx\";\n" + 
         "\t\t\tseq++;\n" + 
