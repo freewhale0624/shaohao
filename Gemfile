@@ -77,3 +77,4 @@ gem 'kaminari', '~> 0.16.3'
 gem 'pg', '~> 0.18.2'
 gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'font-awesome-rails', '~> 4.3.0.0'
+gem "recaptcha", require: "recaptcha/rails", github: "ambethia/recaptcha"

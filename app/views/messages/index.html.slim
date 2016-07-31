@@ -40,5 +40,7 @@ div.modal.fade#messageModal
             div.form-inputs
               = f.input :nickname, label: '暱稱', required: true, autofocus: true
               = f.input :msg, label: '留言', as: :text, required: true
+          div.form_resie.center-block
+            div= recaptcha_tags 
         div.modal-footer
           = f.button :submit, "留言", class: "btn btn-primary"

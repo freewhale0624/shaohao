@@ -3,3 +3,5 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+RECAPTCHA_PUBLIC_KEY  = '6Ld4tCgTAAAAAAMROf12Nmb1BerbPOPCkUZf23Hw'
+RECAPTCHA_PRIVATE_KEY = '6Ld4tCgTAAAAANuObHTXhgtP6EnT9ODUpWSzf_rc'
