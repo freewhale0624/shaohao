@@ -19,7 +19,7 @@ div.row
           = text_field_tag :game_id, nil, class: "form-control", require: true
         div.form-group
           = label_tag :game_server, "伺服器"
-          = select_tag :game_server, options_for_select([ "榮耀新生", "仙魔無界", "創世黑曜", "凌雲異界", "秘海靈城", "仙境奇園" ]), class: "form-control", require: true
+          = select_tag :game_server, options_for_select([ "榮耀仙境", "仙魔無界", "不滅戰魂", "凌雲異界" ]), class: "form-control", require: true
         div.form-group
           = label_tag :game_role, "遊戲角色"
           = text_field_tag :game_role, nil, class: "form-control", require: true
@@ -78,7 +78,7 @@ javascript:
         "\t\tsetTimeout(function(){\n" + 
         "\t\t\tdocument.getElementById(\"main\").src = \"SPECIAL_CARD/spcard01.aspx\";\n" + 
         "\t\t\tseq++;\n" + 
-        "\t\t\tsetTimeout(setCard, 1000);\n" + 
+        "\t\t\tsetTimeout(setCard, 5000);\n" + 
         "\t\t}, 9000)\n" + 
         "\t}\n" + 
         "}\n" + 
