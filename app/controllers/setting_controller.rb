@@ -1,5 +1,4 @@
 class SettingController < ApplicationController
-  before_action :authenticate_shaohao!
 
   def edit_init_time
     @carousels = Carousel.all
