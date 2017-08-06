@@ -25,6 +25,6 @@ div.row
               td.col-md-3= (@start_time + WHEELDATA[index][0]).strftime("%H:%M:%S")
               td.col-md-3= WHEELDATA[index + WHEELDATA.length/2][1]
               td.col-md-3= (@start_time + WHEELDATA[index + WHEELDATA.length/2][0]).strftime("%H:%M:%S")
-      p.small.pull-right 感謝 #{@wheel.user.username} 由 #{@wheel.updated_at.strftime("%Y/%m/%d %H:%M:%S")} 更新資料
+      p.small.pull-right 感謝好心的路人甲 由 #{@wheel.updated_at.strftime("%Y/%m/%d %H:%M:%S")} 更新資料
     - else
       h4 無初始資料，請等待管理員更新

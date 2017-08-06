@@ -8,7 +8,7 @@ class SettingController < ApplicationController
     init_time = Time.zone.local(params[:year], params[:month], params[:date], params[:hour], params[:min], params[:sec]) - params[:place].to_i
     @wheel = Wheel.first || Wheel.new
     @wheel.init_time = init_time
-    @wheel.user_id = current_user.id
+    #@wheel.user_id = current_user.id
     
     if @wheel.save
       redirect_to root_path, notice: "時間已更新"
