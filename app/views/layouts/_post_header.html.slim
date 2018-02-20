@@ -1,18 +1,18 @@
 ul.nav.nav-tabs.nav-padding-left
   li role="presentation" class="#{params[:user].nil? ? 'active' : ''}"
     = link_to " 全  部 ", posts_path(tag: params[:tag])
-  li role="presentation" class="#{params[:user] == '1' ? 'active' : ''}"
-    = link_to " Ding.Kou 一言堂 ", posts_path(user: 1, tag: params[:tag])
-  li role="presentation" class="#{params[:user] == '2' ? 'active' : ''}"
-    = link_to " 黑君碎碎念 ", posts_path(user: 2, tag: params[:tag])
-  li.dropdown.pull-right role="presentation"
-    a.dropdown-toggle#tag-drop data-toggle="dropdown" aria-controls="tag-drop-contents" aria-expanded="false"
-      = params[:tag] || "全 部"
-      span.caret
-    ul.dropdown-menu#tag-drop-contents role="menu" aria-labelledby="tag-drop"
-      li
-        = link_to "全 部", posts_path(user: params[:user])
-      - unless Post.tag_counts_on(:tags).blank?
-        - Post.tag_counts_on(:tags).sort_by{|t| t.name}.each do |tag|
-          li
-            = link_to tag.name, posts_path(user: params[:user], tag: tag.name)
+  / li role="presentation" class="#{params[:user] == '1' ? 'active' : ''}"
+  /   = link_to " Ding.Kou 一言堂 ", posts_path(user: 1, tag: params[:tag])
+  / li role="presentation" class="#{params[:user] == '2' ? 'active' : ''}"
+  /   = link_to " 黑君碎碎念 ", posts_path(user: 2, tag: params[:tag])
+  / li.dropdown.pull-right role="presentation"
+  /   a.dropdown-toggle#tag-drop data-toggle="dropdown" aria-controls="tag-drop-contents" aria-expanded="false"
+  /     = params[:tag] || "全 部"
+  /     span.caret
+  /   ul.dropdown-menu#tag-drop-contents role="menu" aria-labelledby="tag-drop"
+  /     li
+  /       = link_to "全 部", posts_path(user: params[:user])
+  /     - unless Post.tag_counts_on(:tags).blank?
+  /       - Post.tag_counts_on(:tags).sort_by{|t| t.name}.each do |tag|
+  /         li
+  /           = link_to tag.name, posts_path(user: params[:user], tag: tag.name)
